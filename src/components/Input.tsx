@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { IonInput, IonButton } from '@ionic/react';
 
-interface props {
+interface Props {
   addTodo: (value: string) => void;
 }
 
-export default function TodoInput({ addTodo }: props) {
+export default function TodoInput({ addTodo }: Props) {
   const [value, setValue] = useState('');
 
   return (
