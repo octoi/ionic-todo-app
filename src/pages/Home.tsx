@@ -9,7 +9,10 @@ import {
   IonItem,
   IonLabel,
   IonCheckbox,
+  IonButton,
+  IonIcon,
 } from '@ionic/react';
+import { trash } from 'ionicons/icons';
 import TodoInput from '../components/Input';
 import './Home.css';
 
@@ -44,24 +47,39 @@ const Home: React.FC = () => {
             }
           />
           {todos.length !== 0 && (
-            <IonList style={{ marginTop: '20px' }}>
+            <IonList style={{ marginTop: '20px', padding: '15px' }}>
               {todos?.map((todo) => (
-                <IonItem key={todo.id}>
-                  <IonLabel>{todo.value}</IonLabel>
-                  <IonCheckbox
-                    checked={todo.checked}
-                    mode='ios'
-                    onIonChange={(e) => {
-                      const editedTodos = todos.filter((todoItem) => {
-                        if (todoItem.id === todo.id) {
-                          todoItem.checked = !todo.checked;
-                        }
-                        return todoItem;
-                      });
-                      setTodos(editedTodos);
+                <div className='todo' key={todo.id}>
+                  <IonItem style={{ width: '100%' }}>
+                    <IonLabel className={todo.checked ? 'checked-todo' : ''}>
+                      {todo.value}
+                    </IonLabel>
+                    <IonCheckbox
+                      checked={todo.checked}
+                      mode='ios'
+                      onIonChange={(e) => {
+                        const editedTodos = todos.filter((todoItem) => {
+                          if (todoItem.id === todo.id) {
+                            todoItem.checked = !todo.checked;
+                          }
+                          return todoItem;
+                        });
+                        setTodos(editedTodos);
+                      }}
+                    />
+                  </IonItem>
+                  <IonButton
+                    onClick={() => {
+                      const newTodos = todos.filter(
+                        (todoItem) => todoItem.id !== todo.id
+                      );
+                      setTodos(newTodos);
                     }}
-                  />
-                </IonItem>
+                    color='danger'
+                  >
+                    <IonIcon icon={trash} />
+                  </IonButton>
+                </div>
               ))}
             </IonList>
           )}
