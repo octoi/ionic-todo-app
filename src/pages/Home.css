@@ -1,0 +1,16 @@
+.p {
+  padding: 50px !important;
+}
+
+.todo-input-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-input {
+  background: var(--ion-card-background);
+  font-size: 20px;
+  padding: 10px !important;
+}
